@@ -1,52 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Aroxe</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: white;
-      text-align: center;
-    }
-    .container {
-      padding: 60px 20px;
-    }
-    h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 18px;
-      opacity: 0.8;
-    }
-    .btn {
-      display: inline-block;
-      margin: 12px;
-      padding: 14px 28px;
-      background: white;
-      color: black;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
-    }
-    .btn:hover {
-      background: #ddd;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-<img src="logo.jpg" alt="Logo" class="logo-img">
-    <h1>Aroxe</h1>
-    <p>Cinephile • Digital Creator• Dog Lover </p>
-    <p> recommending good movies, mind bending physics, and relatable moments.</p>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>aroxe | cinephile</title>
 
-    <a class="btn" href="https://instagram.com/aroxehere" target="_blank">Instagram</a>
-    <a class="btn" href="mailto: thisisaroxe@gmail.com">Contact Me</a>
-  </div>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: radial-gradient(circle at top, #111, #000);
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .container {
+        max-width: 700px;
+        padding: 30px;
+        animation: fadeIn 1.5s ease;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        letter-spacing: 4px;
+        margin-bottom: 10px;
+    }
+
+    .tagline {
+        font-size: 1.2rem;
+        color: #aaa;
+        margin-bottom: 25px;
+    }
+
+    .typing {
+        font-size: 1.3rem;
+        color: #00ffd5;
+        height: 30px;
+        margin-bottom: 30px;
+    }
+
+    p {
+        font-size: 1rem;
+        color: #ccc;
+        line-height: 1.7;
+        margin-bottom: 35px;
+    }
+
+    .links a {
+        display: inline-block;
+        margin: 10px;
+        padding: 12px 28px;
+        border-radius: 30px;
+        border: 1px solid #00ffd5;
+        color: #00ffd5;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .links a:hover {
+        background: #00ffd5;
+        color: #000;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0,255,213,0.4);
+    }
+
+    footer {
+        margin-top: 40px;
+        font-size: 0.8rem;
+        color: #666;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Background animated dots */
+    .bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background-image: radial-gradient(#222 1px, transparent 1px);
+        background-size: 40px 40px;
+        animation: moveBg 20s linear infinite;
+    }
+
+    @keyframes moveBg {
+        from { background-position: 0 0; }
+        to { background-position: 100px 100px; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="container">
+    <h1>Aroxe</h1>
+    <div class="tagline">Cinephile • Digital Creator • Explorer</div>
+
+    <div class="typing" id="typing"></div>
+
+    <p>
+        I create cinematic content, explore mind-bending movies,
+        philosophy, and moments that make you pause and think.
+        Welcome to my digital space.
+    </p>
+
+    <div class="links">
+        <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+        <a href="#" onclick="alert('Coming Soon 🚀')">Projects</a>
+        <a href="mailto:yourmail@email.com">Contact</a>
+    </div>
+
+    <footer>
+        © 2026 Aroxe • Built with curiosity
+    </footer>
+</div>
+
+<script>
+    const texts = [
+        "Exploring Cinema 🎬",
+        "Philosophy & Meaning 🧠",
+        "Reality • Time • Multiverse 🌌",
+        "Follow for More ✨"
+    ];
+
+    let index = 0;
+    let charIndex = 0;
+    let currentText = "";
+    let isDeleting = false;
+    const typingElement = document.getElementById("typing");
+
+    function typeEffect() {
+        if (!isDeleting && charIndex < texts[index].length) {
+            currentText += texts[index].charAt(charIndex);
+            charIndex++;
+        } else if (isDeleting && charIndex > 0) {
+            currentText = currentText.slice(0, -1);
+            charIndex--;
+        } else {
+            isDeleting = !isDeleting;
+            if (!isDeleting) {
+                index = (index + 1) % texts.length;
+            }
+        }
+
+        typingElement.textContent = currentText;
+        setTimeout(typeEffect, isDeleting ? 50 : 90);
+    }
+
+    typeEffect();
+</script>
+
 </body>
-      </html>
+</html>
